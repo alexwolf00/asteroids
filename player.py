@@ -18,8 +18,8 @@ class Player(CircleShape):
         self.shoot_cooldown_timer = 0.0
 
     def triangle(self) -> list[pygame.Vector2]:
-        forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
+        forward = pygame.Vector2(0, -1).rotate(self.rotation)
+        right = pygame.Vector2(0, -1).rotate(self.rotation + 90) * self.radius / 1.5
         nose = self.position + forward * self.radius
         left_wing = self.position - forward * self.radius - right
         right_wing = self.position - forward * self.radius + right
@@ -29,7 +29,7 @@ class Player(CircleShape):
         pygame.draw.polygon(screen, "white", self.triangle(), LINE_WIDTH)
 
     def move(self, dt: float) -> None:
-        unit_vector = pygame.Vector2(0, 1)
+        unit_vector = pygame.Vector2(0, -1)
         rotated_vector = unit_vector.rotate(self.rotation)
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.position += rotated_with_speed_vector
@@ -41,7 +41,7 @@ class Player(CircleShape):
         if self.shoot_cooldown_timer <= 0:
             self.shoot_cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
             shot = Shot(self.position.x, self.position.y)
-            shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+            shot.velocity = pygame.Vector2(0, -1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
 
     def update(self, dt: float) -> None:
         self.shoot_cooldown_timer -= dt
