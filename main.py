@@ -6,6 +6,8 @@ import sys
 import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 from logger import log_state
 
 
@@ -21,10 +23,14 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    asteroid_field = AsteroidField()
 
     try:
         while True:
@@ -41,7 +47,12 @@ def main():
                 obj.draw(screen)
             pygame.display.flip()
 
-            # limit the framerate to 60 FPS
+            # 1. get the delta time
+            # pygame.time.Clock.tick(framerate=0) -> milliseconds
+            # computes how many miliseconds have passed since previous call; by dividing the result by 1000, you get the seconds
+            # in this loop .tick() is called once per frame to get the delta time between each frame
+            # 2. limit the framerate to 60 FPS
+            # by passing it the framerate, the function will delay to keep the game running slower than the given ticks/frames per second
             dt = clock.tick(60) / 1000
 
     except KeyboardInterrupt:
