@@ -12,3 +12,4 @@ wheels/
 # Other files
 /logger.py
 game_state.jsonl
+game_events.jsonl
