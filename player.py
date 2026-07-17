@@ -48,6 +48,7 @@ class Player(CircleShape):
 
         keys = pygame.key.get_pressed()
 
+        # WASD movement
         if keys[pygame.K_w]:
             self.move(dt)
         if keys[pygame.K_a]:
@@ -57,5 +58,26 @@ class Player(CircleShape):
         if keys[pygame.K_d]:
             self.rotate(dt)
 
+        # arrow keys movement
+        if keys[pygame.K_UP]:
+            self.move(dt)
+        if keys[pygame.K_LEFT]:
+            self.rotate(-dt)
+        if keys[pygame.K_DOWN]:
+            self.move(-dt)
+        if keys[pygame.K_RIGHT]:
+            self.rotate(dt)
+
+        # vim movement
+        if keys[pygame.K_k]:
+            self.move(dt)
+        if keys[pygame.K_h]:
+            self.rotate(-dt)
+        if keys[pygame.K_j]:
+            self.move(-dt)
+        if keys[pygame.K_l]:
+            self.rotate(dt)
+
+        # shooting key
         if keys[pygame.K_SPACE]:
             self.shoot()
