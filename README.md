@@ -2,11 +2,17 @@
 
 A simple video game based on the classic [Asteroids](https://en.wikipedia.org/wiki/Asteroids_(video_game)). Asteroids is a [Boot.dev](https://www.boot.dev/) project.
 
-## Usage
+## How to Start the Game
 
 ```sh
 python main.py
 ```
+
+## Controls
+
+Move with WASD, arrow keys, or HJKL (vim controls).
+
+Shoot with spacebar.
 
 ## Python Version
 
