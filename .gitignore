@@ -13,3 +13,4 @@ wheels/
 /logger.py
 game_state.jsonl
 game_events.jsonl
+notes.txt
